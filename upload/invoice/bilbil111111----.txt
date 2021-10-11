@@ -1,0 +1,16 @@
+github commit
+1. create github repogitory
+2. git remote add origin https://github.com/Cocna/customer-manage.git   //set
+3. git push --set-upstream origin master  //push
+
+
+
+//customer manage
+https://github.com/Cocna/customer-manage.git
+
+-- phone contact
+
+github: https://github.com/MaximRuslan/customer-create
+netlify:  https://5e15337baf02909330d694e9--vigorous-kowalevski-210382.netlify.com/
+
+

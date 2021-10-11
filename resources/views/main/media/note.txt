@@ -1,0 +1,69 @@
+  $(document).ready(function() {
+     $.ajax({
+         type: "get"
+         , url: "{{route('digital.client')}}",
+         //url: "{{ URL::asset('/assets/json/product/product.php') }}",
+         dataType: "json"
+         , success: function(result) {
+            var dataHtml = '';
+            console.log("data", result)
+            //var result=$.parseJSON(data);
+            $.each(result.productList, function(key, value) {
+               logo = "{{asset('assets/logo/file.jpg')}}";
+               if (value.digital.type == 'image') {
+                  logo = "{{asset('upload/digital/')}}" + "/" + `${value.digital.name}.${value.digital.ext}`
+               }
+               if (value.digital.type == 'text') {
+                  if (value.digital.ext == 'txt') {
+                     logo = "{{asset('assets/logo/text.png')}}";
+                  }
+                  if (value.digital.ext == 'html') {
+                     logo = "{{asset('assets/logo/html.png')}}";
+                  }
+               }
+               if (value.digital.type == 'application') {
+                  if (value.digital.ext == 'pdf') {
+                     logo = "{{asset('assets/logo/pdf.jpg')}}";
+                  }
+               }
+               console.log("log", logo);
+
+               dataHtml += "<div class='col-xl-2 col-sm-3'>" +
+                  "<div class='product-box' id='" + value.id + "'>" +
+                  "<div class='product-img pt-4 px-4'>" +
+                  "<div class='product-ribbon badge badge-primary'>New</div>" +
+                  "<div class='product-wishlist'>" +
+                  //  "<a href='#'>"+
+                  //      "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-heart icon-sm heart-icon'><path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'></path></svg>"+
+                  //  "</a>"+
+                  "</div>" +
+                  "<a href='{{ URL('/') }}" + "/ecommerce-product-detail'>" +
+                  "<img src='" + logo + "' alt='' class='img-fluid mx-auto p-img'>" +
+                  "<img src='" + logo + "' alt='' class='img-fluid mx-auto p-h-img'>" +
+                  "</a>" +
+                  "<ul class='list-unstyled mb-0 text-muted product-color'>" +
+                  "<li class='text-center'>" +
+                  "<a href=" + "{{ asset('upload/digital/') }}" + "/" + `${value.digital.name}.${value.digital.ext}` + " target='_blank' class='btn btn-primary'><i class='uil uil-eye font-size-18'></i></a>" +
+                  // <i class='mdi mdi-circle text-dark'></i>
+                  "</li>" +
+                  "<li class='text-center'>" +
+                  "<a href=" + "{{ asset('upload/digital/') }}" + "/" + `${value.digital.name}.${value.digital.ext}` + " target='_blank' class='btn btn-primary' download><i class='uil-arrow-circle-down font-size-18'></i></a>" +
+                  //"<i class='mdi mdi-circle text-info'></i>"+
+                  "</li>" +
+                  "<li>" +
+                  "</ul>" +
+                  "</div>" +
+                  "<div class='page-content p-4'>" +
+                  "<h5 class='mb-1'><a href='#' class='text-dark'>" + `${value.digital.name}.${value.digital.ext}` + "</a></h5>" +
+                  "<p class='text-muted font-size-15'>" + moment(value.digital.updated_at).format("MMM DD, YYYY") + "</p>" +
+
+                  "</h5>" +
+                  "</div>" +
+                  "</div>" +
+                  "</div>";
+
+            });
+            //$('.Allproduct').append(dataHtml);
+         }
+     });
+  });

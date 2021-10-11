@@ -1,0 +1,24 @@
+Comic Sans MS
+
+미국 지역 기반 전자상거래 싸이트
+아마존 api를 리용하여 아마존 제품 업로드 가능
+관리자에 의한 주문처리 지원과 분쟁 해결
+paypal, stripe, razorpay 페이 통합
+완벽한 wallet 관리 기능
+
+
+오래된 버전의 php 를 laravel 7.0으로 업그래드
+database 큐리에 의한 검색조건 개선으로 30% 속도 개선
+
+
+참대 싸이트
+react component 에 위해 최적화된 파일 구조
+redux에 위한 전 대역 상태관리
+api호출을 리용한 화페변환률 얻기
+
+
+pto 
+
+표준적이고 직관적인 디자인과 효률적인 기능 구현
+full caldenar를 리용한 팀, 작업형태 표시
+

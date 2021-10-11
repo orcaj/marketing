@@ -1,0 +1,19 @@
+link : 148.72.88.25
+
+https://sg3plcpnl0209.prod.sin3.secureserver.net:2083/
+username : 
+ipr4swuxj3ff
+
+pass : }izv1?eCv{U=F
+
+
+
+https://sso.godaddy.com/?realm=idp&app=dashboard.api&path=%2fvh-login-redirect&marketid=en-AE
+username : 349853607
+
+pass : C*#.wrAFL6QDYUv
+
+
+
+349853607
+7725
