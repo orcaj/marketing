@@ -48,6 +48,43 @@
 
                      <div class="col-md-3">
                         <div class="form-group">
+                           <label for="username">{{__('Campaign Name')}}</label>
+                           <input type="text" class="form-control @error('campaign_name') is-invalid @enderror" id="campaign_name" name="campaign_name" value="{{$digital->campaign_name}}" >
+                           @error('campaign_name')
+                           <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                           </span>
+                           @enderror
+                        </div>
+                     </div>
+
+                     <div class="col-md-3">
+                        <div class="form-group">
+                           <label for="username">{{__('Link Of the Campaign')}}</label>
+                           <input type="text" class="form-control @error('campaign_link') is-invalid @enderror" id="campaign_link" name="campaign_link"  value="{{$digital->campaign_link}}" />
+                           @error('campaign_link')
+                           <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                           </span>
+                           @enderror
+                        </div>
+                     </div>
+
+                     <div class="col-md-3">
+                        <div class="form-group">
+                           <label for="username">{{__('Campaign Status')}}</label>
+                           <select id="campaign_status" name="campaign_status" class="form-control" required>
+                              <option value="processing" {{$digital->campaign_status == 'processing' ? 'selected' : ''}} >Processing</option>
+                              <option value="running" {{$digital->campaign_status == 'running' ? 'selected' : ''}} >running</option>
+                              <option value="pause" {{$digital->campaign_status == 'pause' ? 'selected' : ''}} >pause</option>
+                              <option value="complete" {{$digital->campaign_status == 'complete' ? 'selected' : ''}} >complete</option>
+                              <option value="remove" {{$digital->campaign_status == 'remove' ? 'selected' : ''}} >remove</option>
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="col-md-3">
+                        <div class="form-group">
                            <label for="username">{{__('Clients')}}</label>
                            <select id="client" name="client" class="form-control" required>
                               @foreach($clients as $key => $client)

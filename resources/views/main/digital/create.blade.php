@@ -22,7 +22,7 @@
                      <div class="col-md-3">
                         <div class="form-group">
                            <label for="username">{{__('File')}}</label>
-                           <input type="file" class="form-control" id="file" name="file" required>
+                           <input type="file" class="form-control" id="file" name="file" >
                         </div>
                      </div>
 
@@ -35,6 +35,43 @@
                               <strong>{{ $message }}</strong>
                            </span>
                            @enderror
+                        </div>
+                     </div>
+
+                     <div class="col-md-3">
+                        <div class="form-group">
+                           <label for="username">{{__('Campaign Name')}}</label>
+                           <input type="text" class="form-control @error('campaign_name') is-invalid @enderror" id="campaign_name" name="campaign_name" required>
+                           @error('campaign_name')
+                           <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                           </span>
+                           @enderror
+                        </div>
+                     </div>
+
+                     <div class="col-md-3">
+                        <div class="form-group">
+                           <label for="username">{{__('Link Of the Campaign')}}</label>
+                           <input type="text" class="form-control @error('campaign_link') is-invalid @enderror" id="campaign_link" name="campaign_link" />
+                           @error('campaign_link')
+                           <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                           </span>
+                           @enderror
+                        </div>
+                     </div>
+
+                     <div class="col-md-3">
+                        <div class="form-group">
+                           <label for="username">{{__('Campaign Status')}}</label>
+                           <select id="campaign_status" name="campaign_status" class="form-control" required>
+                              <option value="processing">Processing</option>
+                              <option value="running">running</option>
+                              <option value="pause">pause</option>
+                              <option value="complete">complete</option>
+                              <option value="remove">remove</option>
+                           </select>
                         </div>
                      </div>
 
@@ -114,8 +151,14 @@
       e.preventDefault();
       name = $("#name").val();
       filename = $("#file").prop('files')[0];
-      ext = filename.name.split(".")[1];
-      check_duplicate(name, ext);
+      console.log('ffff', name, filename)
+      if(filename){
+         ext = filename.name.split(".")[1];
+         check_duplicate(name, ext);
+      }else{
+         document.getElementById("submit_form").submit();
+      }
+      
    })
 
    $("#replaceBtn").click(function(e) {

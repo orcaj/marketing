@@ -64,5 +64,7 @@ return [
    "amount" => "amount",
    "status" => "status",
    "media" => "media",
+   "Campaign Name"=>"Campaign Name",
+   "Campaign Status"=>"Campaign Status",
    
 ];

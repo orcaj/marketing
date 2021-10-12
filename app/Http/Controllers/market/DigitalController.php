@@ -98,17 +98,27 @@ class DigitalController extends Controller
             $client=$request->client;
             $name=$request->name;
             $file=$request->file;
-            $type=explode('/', $file->getMimeType())[0];
+            $campaign_name=$request->campaign_name;
+            $campaign_link=$request->campaign_link;
+            $campaign_status=$request->campaign_status;
 
-            $ext=$file->getClientOriginalExtension();
-
-            $file->move(public_path('upload/digital'), $name.".".$ext);
+            $type=" ";
+            $ext=" ";
+            if($file){
+                $type=explode('/', $file->getMimeType())[0];
+                $ext=$file->getClientOriginalExtension();
+                $file->move(public_path('upload/digital'), $name.".".$ext);
+            }
+            
             $digital=Digital::create([
                 'user_id' => auth()->user()->id,
                 'client_id' => $client,
                 'name'=> $name,
                 'ext' => $ext,
-                'type'=>$type
+                'type'=>$type,
+                'campaign_name'=>$campaign_name,
+                'campaign_link'=>$campaign_link,
+                'campaign_status'=>$campaign_status,
             ]);
             
             return redirect()->route('digital.index')->with(['success' => __('general.Create Success')]);
@@ -158,6 +168,10 @@ class DigitalController extends Controller
         $file=$request->file;
         $name=$request->name;
 
+        $campaign_name=$request->campaign_name;
+        $campaign_link=$request->campaign_link;
+        $campaign_status=$request->campaign_status;
+
         if($file){
             $old_filepath = public_path('upload/digital/').$digital->full_name;
             if(File::exists($old_filepath)) {
@@ -170,11 +184,18 @@ class DigitalController extends Controller
             $digital->ext=$ext;
             $digital->type=$type;
         }else{
-            rename(public_path('upload/digital/').$digital->full_name, public_path('upload/digital/').$name.".".$digital->ext);
+            if($digital->type != " "){
+                rename(public_path('upload/digital/').$digital->full_name, public_path('upload/digital/').$name.".".$digital->ext);
+            }
         }
         $digital->name=$name;
         $digital->client_id=$client;
         $digital->user_id=auth()->user()->id;
+
+        $digital->campaign_name=$campaign_name;
+        $digital->campaign_link=$campaign_link;
+        $digital->campaign_status=$campaign_status;
+
         $digital->save();
         
         return redirect()->route('digital.index')->with(['success' => __('general.Update Success')]);

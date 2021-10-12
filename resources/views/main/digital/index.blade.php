@@ -82,6 +82,8 @@
                      </div>
                   </th> --}}
                   <th>@lang('general.No')</th>
+                  <th style="width: 120px;">@lang('general.Campaign Name')</th>
+                  <th style="width: 120px;">@lang('general.Campaign Status')</th>
                   <th style="width: 120px;">@lang('general.File Name')</th>
                   <th style="width: 120px;">@lang('general.Client')</th>
                   @if(permission('manager'))
@@ -102,6 +104,8 @@
                      </div>
                   </td> --}}
                   <td>{{$key+1}}</td>
+                  <td>{{$digital->campaign_name}}</td>
+                  <td>{{$digital->campaign_status}}</td>
                   <td>
                      {{-- <img src="{{ asset('public/upload/digital/'.$digital->name) }}" alt="{{$digital->name}}" loading="lazy"
                      class="avatar-xs rounded-circle mr-2"> --}}
@@ -115,12 +119,21 @@
                      <p class="mb-1">{{$digital->created_at}}</p>
                   </td>
 
-                  <td><a class="btn btn-primary waves-effect waves-light" href="{{ asset('public/upload/digital/'.$digital->full_name) }}" download>@lang('general.Download') </a></td>
+                  <td>
+                     @if($digital->type != " ")
+                     <a class="btn btn-primary waves-effect waves-light" href="{{ asset('public/upload/digital/'.$digital->full_name) }}" download>@lang('general.Download') </a>
+                     @endif
+                  </td>
 
                   <td>
                      <a href="{{route('digital.edit', $digital->id)}}" class="px-3 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
                      <a href="javascript:void(0);" class="px-3 text-primary delete-btn" data-toggle="tooltip" data-id="{{$digital->id}}" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                     @if($digital->type != " ")
                      <a class="px-3 text-primary" href="{{ asset('public/upload/digital/'.$digital->full_name) }}" target="_blank"> <i class="uil uil-eye font-size-18"></i></a>
+                     @endif
+                     @if($digital->campaign_link)
+                     <a class="px-3 text-primary" href="{{$digital->campaign_link}}" target="_blank"> <i class="uil uil-link font-size-18"></i></a>
+                     @endif
                   </td>
                </tr>
                @endforeach

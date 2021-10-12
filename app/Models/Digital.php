@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Digital extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'name', 'ext', 'type', 'client_id'];
+    protected $fillable = ['user_id', 'name', 'ext', 'type', 'client_id', 'campaign_name',
+        'campaign_link',
+        'campaign_status'];
 
     public function getClient()
     {
