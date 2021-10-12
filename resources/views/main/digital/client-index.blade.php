@@ -92,7 +92,7 @@
                      <a class="px-3 text-primary" href="{{ asset('public/upload/digital/'.$digital->full_name) }}" target="_blank"> <i class="uil uil-eye font-size-18"></i></a>
                      @endif
                      @if($digital->campaign_link)
-                     <a class="px-3 text-primary" href="{{$digital->campaign_link}}" target="_blank"> <i class="uil uil-link font-size-18"></i></a>
+                     <a class="px-3 text-primary connect-link" href="{{$digital->campaign_link}}" target="_blank"> <i class="uil uil-link font-size-18"></i></a>
                      @endif
                   </td>
                </tr>
@@ -120,6 +120,15 @@
 <script src="{{ URL::asset('/assets/js/calc.js') }}"></script>
 
 <script>
+
+$(document).on('click', '.connect-link', function(e){
+      e.preventDefault();
+      link=$(this).attr('href');
+      if(link.slice(0, 3) == 'www' ){
+         link="https://"+link;
+      }
+      window.open(link, '_blank');
+   } )
 
 $(document).ready(function () {
     $('.datatable').DataTable({
